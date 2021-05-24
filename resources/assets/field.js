@@ -482,7 +482,7 @@ $(function () {
                                 .find('.lake-form-media-selected')
                                 .removeClass('lake-form-media-selected')
                         } else {
-                            if (selectNum > limit) {
+                            if (selectNum > limit && limit != 0) {
                                 toastr.error('选择图片不能超过 '+limit+' 张');
                                 return 1;
                             }
