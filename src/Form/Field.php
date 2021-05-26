@@ -150,6 +150,9 @@ class Field extends BaseField
      */
     public function limit($limit = 1)
     {
+        if ($limit == 0) {
+            return $this;
+        }
         $this->limit = $limit;
 
         return $this;

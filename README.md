@@ -91,7 +91,7 @@ photo 、 photos 、 video  的 参数默认值不一样
 
 photo  默认 limit = 1  remove = false
 
-photos 默认 limit = 9  remove = true
+photos 默认 limit = 99  remove = true
 
 video  默认 limit = 1  remove = true
 ```
