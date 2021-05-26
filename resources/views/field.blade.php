@@ -15,7 +15,7 @@
         
         <div class="input-group">
             
-            <input type="text" 
+            <input type="hidden"
                 name="{{$name}}" 
                 class="form-control lake-form-media-input {{$class}}"  
                 placeholder="{{ $placeholder }} " {!! $attributes !!} 

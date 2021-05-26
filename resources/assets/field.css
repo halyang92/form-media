@@ -9,9 +9,36 @@
     overflow: hidden;
     padding: 5px 6px;
     position: relative;
-    border: 1px solid #f5f6f9;
+    border: 1px solid #dbe3e6;
     border-radius: 5px;
     background: #fff;
+}
+.lake-form-media .lake-form-media-row-col input {
+    width: 100%;
+    appearance: none;
+    border: 1px solid #dbe3e6;
+    font-size: 12px;
+    color: #333;
+    background: none;
+    margin-bottom: 4px;
+    outline: none;
+    line-height: 32px;
+    border-radius: 4px;
+    padding: 0 10px;
+}
+.lake-form-media .lake-form-media-row-col input::placeholder {
+    color: rgba(34, 41, 47, .4);
+}
+.lake-form-media .lake-form-media-row-col input:focus {
+    color: #4e5154;
+    background-color: #fff;
+    border-color: #586cb1;
+    outline: 0;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .15);
+}
+.lake-form-media .lake-form-media-preview-item {
+    padding: 0 5px;
+    margin-bottom: 5px;
 }
 .lake-form-media .lake-form-media-row-col:hover {
     border: 1px solid #dfe1e6;

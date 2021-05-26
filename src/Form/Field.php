@@ -42,6 +42,8 @@ class Field extends BaseField
     protected $nametype = 'uniqid';
     protected $pageSize = 120;
 
+    protected $textField = false;
+
     /**
      * 设置上传链接
      *
@@ -200,6 +202,20 @@ class Field extends BaseField
         return $this;
     }
 
+    /**
+     * 文本框字段
+     *
+     * @param boolen $textField
+     *
+     * @return $this
+     */
+    public function textField($textField = false)
+    {
+        $this->textField = $textField;
+
+        return $this;
+    }
+
     public function render()
     {
         $path = $this->path;
@@ -209,6 +225,7 @@ class Field extends BaseField
         $pageSize = $this->pageSize;
         $rootpath = (new MediaManager())->buildUrl('');
         $remove = ($this->remove == true) ? 1 : 0;
+        $textField = ($this->textField == true) ? 1 : 0;
         
         if (empty($this->uploadUrl)) {
             $this->uploadUrl = admin_route('admin.lake-form-media.upload');
@@ -238,6 +255,7 @@ class Field extends BaseField
                 'pageSize' => $pageSize,
                 'rootpath' => $rootpath,
                 'remove' => $remove,
+                'textField' => $textField,
                 
                 'get_files_url' => $this->listUrl,
                 'upload_url' => $this->uploadUrl,

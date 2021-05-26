@@ -23,7 +23,7 @@
 ### composer 安装
 
 ```
-composer require lake/form-media
+composer require halyang92/form-media
 ```
 
 ### 安装扩展
@@ -85,6 +85,7 @@ nametype(string)： 文件重命名方式 uniqid|datetime，默认 uniqid
 pageSize(string)： 弹出层列表每页显示数量
 limit(int)      ： 限制条数
 remove(boolean) :  是否有删除按钮
+textField(boolean) : 是否开启文本字段 ，默认关闭
 
 photo 、 photos 、 video  的 参数默认值不一样
 
@@ -116,7 +117,7 @@ class Demo extends Model
 
 ## 特别鸣谢
 
-感谢 `yelphp` 提供的原始代码
+感谢 `detail` 提供的原始代码
 ```
-yelphp/narwhalformmedia
+https://github.com/deatil/dcat-form-media
 ```
