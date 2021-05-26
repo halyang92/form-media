@@ -1,5 +1,5 @@
 /**
- * LakeFormMedia-field.js v1.0.12
+ * LakeFormMedia-field.js v1.0.3
  *
  * @create 2021-05-26
  * @author halyang92
@@ -30,7 +30,7 @@ $(function () {
 
                     showRowCont.dragsort({
                         itemSelector: 'div.lake-form-media-preview-item',
-                        dragSelector: ".js-dragsort",
+                        dragSelector: '.js-dragsort',
                         dragEnd: function () {
                             thiz.refreshInputString(name);
                         },
@@ -46,12 +46,9 @@ $(function () {
                 .on("click", ".lake-form-media-img-show-item-delete", function(){
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
-
-                    var itemurl = $(this).data('url');
-
                     var mediaShowCont = mediaCont.find('.lake-form-media-img-show');
 
-                    mediaCont.find('.lake-form-media-preview-item[data-src="' + itemurl + '"]').remove();
+                    $(this).parents('.lake-form-media-preview-item').remove();
                     thiz.refreshInputString(name);
 
                     if (mediaShowCont.find('.lake-form-media-preview-item').length < 1) {
@@ -536,11 +533,15 @@ $(function () {
                 .on('input', ".row.lake-form-media-img-show-row", function (key) {
                     // 获取原先JSON结构的值
                     var mediaCont = $(this).parents('.lake-form-media');
+                    var itemCont = $(key.target).parents('.lake-form-media-preview-item');
                     var inputCont = mediaCont.find('.lake-form-media-input');
                     var originArray = JSON.parse(inputCont.val());
 
-                    var replaceKey = key.target.dataset.key; // 替换对应的数组下标
+                    var replaceKey = itemCont.index(); // 替换对应的数组下标
                     var replaceField = key.target.dataset.field; // 被替换的字段
+
+                    // 更新data数据
+                    itemCont.data(replaceField, key.target.value);
 
                     // 替换对应的内容
                     originArray[replaceKey][replaceField] = key.target.value;
@@ -748,11 +749,11 @@ $(function () {
                 if (! this.isUrl(src)) {
                     src = rootpath + urlList[i]['path'];
                 }
-                var html = '<div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 lake-form-media-preview-item" data-src="'+ urlList[i]['path'] +'" data-title="' + title + '" data-content="' + content + '" >';
+                var html = '<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 lake-form-media-preview-item" data-src="'+ urlList[i]['path'] +'" data-title="' + title + '" data-content="' + content + '" >';
                 html += '<div class="thumbnail lake-form-media-row-col">';
                 if (textField) {
-                    html += '<input type="text" data-key="' + i + '" data-field="title" value="' + title + '" />';
-                    html += '<input type="text" data-key="' + i + '" data-field="content" value="' + content + '" />';
+                    html += '<input type="text" data-key="' + i + '" data-field="title" value="' + title + '" placeholder="请填写标题" />';
+                    html += '<input type="text" data-key="' + i + '" data-field="content" value="' + content + '" placeholder="请填写内容" />';
                 }
 
                 html += '<div class="lake-form-media-row-img">';
@@ -766,7 +767,7 @@ $(function () {
                     html += '<span class="btn btn-default lake-form-media-img-show-item-preview" data-type="'+suffix+'" data-url="'+src+'" title="预览"><i class="fa fa-search-plus"></i></span>';
                 }
                 if (remove) {
-                    html += '<span class="btn btn-default file-delete-multiple lake-form-media-img-show-item-delete" data-url="'+urlList[i]+'" title="移除"><i class="fa fa-trash-o"></i></span>';
+                    html += '<span class="btn btn-default file-delete-multiple lake-form-media-img-show-item-delete" data-url="'+src+'" title="移除"><i class="fa fa-trash-o"></i></span>';
                 }
                 if (limit > 1) {
                     html += '<span class="btn btn-default lake-form-media-img-show-item-dragsort js-dragsort" title="拖动"><i class="fa fa-arrows"></i></span>';
