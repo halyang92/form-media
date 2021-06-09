@@ -39,7 +39,7 @@
     </div>
     
     <!-- 弹窗 -->
-    <div class="modal fade lake-form-media-modal" id="LakeFormMediaModel{{ str_replace(['[', ']'], ['-', ''], $name) }}" tabindex="-1" role="dialog" aria-labelledby="LakeFormMediaModalLabel">
+    <div class="modal fade lake-form-media-modal" id="LakeFormMediaModel{{ str_replace(['[', ']'], ['-', ''], $name) }}" tabindex="-1" role="dialog" aria-labelledby="LakeFormMediaModalLabel" style="z-index: 999999999">
         <div class="modal-dialog" role="document">
             <div class="modal-content"  style="width: 100%">
               <div class="modal-header">
