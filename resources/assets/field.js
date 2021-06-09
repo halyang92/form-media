@@ -635,7 +635,8 @@ $(function () {
                     var urlListStr = inputCont.val();
                     var urlList = [];
                     if (limit == 1) {
-                        mediaModalTableCont.find('[data-url="'+urlListStr+'"]')
+                        urlListStr = thiz.isJSON( urlListStr );
+                        mediaModalTableCont.find('[data-url="'+ urlListStr[0]['path'] +'"]')
                             .addClass('lake-form-media-selected');
                     } else {
                         urlList = thiz.isJSON( urlListStr );
