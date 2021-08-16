@@ -99,6 +99,10 @@ class FormMedia extends Controller
         $manager = (new MediaManager())
             ->setPath($dir);
 
+        if (!$manager->checkFolderName($name)) {
+            return $this->renderJson(LakeFormMedia::trans('form-media.folder name cannot be in Chinese'), -1);
+        }
+
         try {
             if ($manager->createFolder($name)) {
                 return $this->renderJson(LakeFormMedia::trans('form-media.create_success'), 200);

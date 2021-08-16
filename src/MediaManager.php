@@ -433,4 +433,17 @@ class MediaManager
             return '';
         }
     }
+
+    /**
+     * 检验文件夹名是否包含中文
+     */
+    public function checkFolderName($name)
+    {
+        $pattern = '/[\x{4e00}-\x{9fa5}]/u';
+        if (preg_match($pattern , $name) > 0) {
+            return false;
+        }
+
+        return true;
+    }
 }
