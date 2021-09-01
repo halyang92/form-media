@@ -1,6 +1,8 @@
-<div class="lake-form-media lake-form-media-{{ str_replace(['[', ']'], ['-', ''], $name) }} {{$viewClass['form-group']}} {!! !$errors->has($errorKey) ? '' : 'has-error' !!}" 
-    data-name="{{ str_replace(['[', ']'], ['-', ''], $name) }}" 
-    data-options="{{ json_encode($options) }}" >
+<div class="lake-form-media lake-form-media-{{ str_replace(['[', ']'], ['-', ''], $name) }}-{{ str_replace(['[', ']'], ['-', ''], $options['action']) }} {{$viewClass['form-group']}} {!! !$errors->has($errorKey) ? '' : 'has-error' !!}"
+     data-name="{{ str_replace(['[', ']'], ['-', ''], $name) }}"
+     data-options="{{ json_encode($options) }}"
+     data-action="{{ $options['action'] }}"
+>
 
     <label class="{{$viewClass['label']}} control-label">{{ $label }}</label>
     
@@ -104,7 +106,7 @@
 
 <script>
 $(function() {
-    $('.lake-form-media-{{ str_replace(['[', ']'], ['-', ''], $name) }} .lake-form-media-input').each(function(i, cont) {
+    $('.lake-form-media-{{ str_replace(['[', ']'], ['-', ''], $name) }}-{{ str_replace(['[', ']'], ['-', ''], $options['action']) }} .lake-form-media-input').each(function(i, cont) {
         LakeFormMedia.refreshInputPreview(cont);
     });
 });

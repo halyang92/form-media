@@ -44,6 +44,8 @@ class Field extends BaseField
 
     protected $textField = false;
 
+    protected $action = '';
+
     /**
      * 设置上传链接
      *
@@ -209,12 +211,24 @@ class Field extends BaseField
      * 文本框字段
      *
      * @param boolen $textField
-     *
      * @return $this
      */
     public function textField($textField = false)
     {
         $this->textField = $textField;
+
+        return $this;
+    }
+
+    /**
+     * 设置操作位置，new新建，edit编辑
+     *
+     * @param string $action
+     * @return $this
+     */
+    public function action($action = 'new')
+    {
+        $this->action = $action;
 
         return $this;
     }
@@ -229,6 +243,7 @@ class Field extends BaseField
         $rootpath = (new MediaManager())->buildUrl('');
         $remove = ($this->remove == true) ? 1 : 0;
         $textField = ($this->textField == true) ? 1 : 0;
+        $method = $this->action;
         
         if (empty($this->uploadUrl)) {
             $this->uploadUrl = admin_route('admin.lake-form-media.upload');
@@ -263,6 +278,8 @@ class Field extends BaseField
                 'get_files_url' => $this->listUrl,
                 'upload_url' => $this->uploadUrl,
                 'create_folder_url' => $this->createFolderUrl,
+
+                'action'    => $this->action
             ],
         ]);
 

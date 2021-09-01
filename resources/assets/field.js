@@ -27,12 +27,13 @@ $(function () {
 
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action');
 
                     showRowCont.dragsort({
                         itemSelector: 'div.lake-form-media-preview-item',
                         dragSelector: '.js-dragsort',
                         dragEnd: function () {
-                            thiz.refreshInputString(name);
+                            thiz.refreshInputString(name, action);
                         },
                         placeHolderTemplate: $('<div class="lake-form-media-preview-item" />'),
                         scrollSpeed: 15
@@ -46,10 +47,11 @@ $(function () {
                 .on("click", ".lake-form-media-img-show-item-delete", function(){
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action');
                     var mediaShowCont = mediaCont.find('.lake-form-media-img-show');
 
                     $(this).parents('.lake-form-media-preview-item').remove();
-                    thiz.refreshInputString(name);
+                    thiz.refreshInputString(name, action);
 
                     if (mediaShowCont.find('.lake-form-media-preview-item').length < 1) {
                         mediaShowCont.hide();
@@ -68,6 +70,7 @@ $(function () {
 
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action')
 
                     var options = mediaCont.data('options');
                     options = $.extend({}, options);
@@ -93,9 +96,9 @@ $(function () {
                         mediaModalCont.find('.lake-form-media-actions-label').addClass('hidden');
                     }
 
-                    mediaModalCont.find('.modal-title').text('请选择' + title)
+                    mediaModalCont.find('.modal-title').text('请选择' + title);
 
-                    thiz.getdata(name, path, options);
+                    thiz.getdata(name, action, path, options);
                 });
 
             // 点击排序切换
@@ -122,10 +125,11 @@ $(function () {
                     var mediaModalCont = mediaCont.find('.lake-form-media-modal');
                     var mediaModalNavOlCont = mediaModalCont.find('.lake-form-media-nav-ol');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action');
                     var path = mediaModalNavOlCont.data('current-path');
                     var options = mediaCont.data('options');
 
-                    thiz.getdata(name, path, options)
+                    thiz.getdata(name, action, path, options)
                 });
 
             // 点击文件夹
@@ -134,6 +138,7 @@ $(function () {
                 .on('click', ".lake-form-media-dir-op", function() {
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action')
 
                     var path = $(this).data('path');
 
@@ -146,7 +151,7 @@ $(function () {
 
                     var options = mediaCont.data('options');
 
-                    thiz.getdata(name, path, options)
+                    thiz.getdata(name, action, path, options)
                 });
 
             // 点击nav
@@ -155,6 +160,7 @@ $(function () {
                 .on("click", ".lake-form-media-nav-li", function(){
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action');
 
                     var path = $(this).data('path');
 
@@ -167,7 +173,7 @@ $(function () {
 
                     var options = mediaCont.data('options');
 
-                    thiz.getdata(name, path, options)
+                    thiz.getdata(name, action, path, options)
                 });
 
             // 分页-上一页
@@ -176,6 +182,7 @@ $(function () {
                 .on("click", '.lake-form-media-modal-prev-page', function() {
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('name');
 
                     var mediaModalCont = mediaCont.find('.lake-form-media-modal');
                     var mediaModalPageCont = mediaModalCont.find('.lake-form-media-modal-page');
@@ -194,7 +201,7 @@ $(function () {
 
                     var options = mediaCont.data('options');
 
-                    thiz.getdata(name, path, options)
+                    thiz.getdata(name, action, path, options)
                 });
 
             // 分页-下一页
@@ -203,6 +210,7 @@ $(function () {
                 .on("click", '.lake-form-media-modal-next-page', function() {
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action')
 
                     var mediaModalCont = mediaCont.find('.lake-form-media-modal');
                     var mediaModalPageCont = mediaModalCont.find('.lake-form-media-modal-page');
@@ -223,7 +231,7 @@ $(function () {
 
                     var options = mediaCont.data('options');
 
-                    thiz.getdata(name, path, options)
+                    thiz.getdata(name, action, path, options)
                 });
 
             // 页码提示
@@ -257,6 +265,7 @@ $(function () {
                 .on('click', ".lake-form-media-dir-button", function(res){
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action')
 
                     var mediaModalCont = mediaCont.find('.lake-form-media-modal');
 
@@ -282,7 +291,7 @@ $(function () {
                             if (data['code'] == 200) {
                                 toastr.success(data['msg']);
                                 obj.val('');
-                                thiz.getdata(name, currentPath, options)
+                                thiz.getdata(name, action, currentPath, options)
                             } else {
                                 toastr.error(data['msg']);
                             }
@@ -299,6 +308,7 @@ $(function () {
                 .on('change', '.lake-form-media-upload', function() {
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action')
 
                     var mediaModalCont = mediaCont.find('.lake-form-media-modal');
                     var mediaModalNavOlCont = mediaModalCont.find('.lake-form-media-nav-ol');
@@ -325,7 +335,7 @@ $(function () {
                         success: function(data){
                             if (data['code'] == 200) {
                                 toastr.success(data['msg']);
-                                thiz.getdata(name, currentPath, options)
+                                thiz.getdata(name, action, currentPath, options)
                             } else {
                                 toastr.error(data['msg']);
                             }
@@ -342,6 +352,7 @@ $(function () {
                 .on('click', '.lake-form-media-submit', function(res){
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action');
 
                     var mediaModalCont = mediaCont.find('.lake-form-media-modal');
                     var mediaModalNavOlCont = mediaModalCont.find('.lake-form-media-nav-ol');
@@ -364,7 +375,7 @@ $(function () {
                     if (urlListStr) {
                         if (limit == 1) {
                             // 去掉预览
-                            thiz.refreshPreview(name, [], options)
+                            thiz.refreshPreview(name, action, [], options)
                         } else {
                             urlList = thiz.isJSON( urlListStr );
                         }
@@ -421,7 +432,7 @@ $(function () {
                         inputCont.attr("value", urlList_json);
                     }
 
-                    thiz.refreshPreview(name, urlList, options)
+                    thiz.refreshPreview(name, action, urlList, options)
                     $('#LakeFormMediaModel'+name).modal('hide');
                 });
 
@@ -433,6 +444,7 @@ $(function () {
 
                     var mediaCont = $(this).parents('.lake-form-media');
                     var name = mediaCont.data('name');
+                    var action = mediaCont.data('action')
 
                     var mediaModalCont = mediaCont.find('.lake-form-media-modal');
                     var mediaModalNavOlCont = mediaModalCont.find('.lake-form-media-nav-ol');
@@ -552,8 +564,8 @@ $(function () {
                 });
         },
 
-        getdata: function(name, path = '/', options = []) {
-            var mediaCont = $('.lake-form-media-' + name);
+        getdata: function(name, action, path = '/', options = []) {
+            var mediaCont = $('.lake-form-media-' + name + '-' + action);
 
             var type = options.type;
             var limit = options.limit;
@@ -683,6 +695,7 @@ $(function () {
             var value = $(cont).val();
 
             var name = mediaCont.data('name');
+            var action = mediaCont.data('action');
 
             var mediaModalCont = mediaCont.find('.lake-form-media-modal');
 
@@ -694,7 +707,7 @@ $(function () {
             var valueArr = [];
             if (value) {
                 valueArr = this.isJSON(value);
-                this.refreshPreview(name, valueArr, options);
+                this.refreshPreview(name, action, valueArr, options);
             } else {
                 mediaModalCont
                     .find('.lake-form-media-img-show')
@@ -703,8 +716,8 @@ $(function () {
         },
 
         // 刷新表单数据
-        refreshInputString: function(name) {
-            var mediaCont = $('.lake-form-media-'+name);
+        refreshInputString: function(name, action) {
+            var mediaCont = $('.lake-form-media-'+name+ '-' + action);
             var inputCont = mediaCont.find('.lake-form-media-input');
 
             var urlList = [];
@@ -726,13 +739,13 @@ $(function () {
         },
 
         // 刷新/显示 预览
-        refreshPreview: function(name, urlList, options = []) {
+        refreshPreview: function(name, action, urlList, options = []) {
             var limit = options.limit;
             var remove = options.remove;
             var rootpath = options.rootpath;
             var textField = options.textField;
 
-            var mediaCont = $('.lake-form-media-'+name);
+            var mediaCont = $('.lake-form-media-'+name+'-'+action);
             var imgShowCont = mediaCont.find('.lake-form-media-img-show');
             var imgShowRowCont = mediaCont.find('.lake-form-media-img-show-row');
 
