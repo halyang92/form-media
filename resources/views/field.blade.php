@@ -24,11 +24,11 @@
                 value="{{ old($column, $value)?(is_array(old($column, $value))?json_encode(old($column, $value)):old($column, $value)):'' }}" />
 
             <div class="input-group-btn input-group-append">
-                <div tabindex="500" 
-                    class="btn btn-primary btn-file lake-form-media-btn-file" type="button" 
-                    data-toggle="modal" 
-                    data-target="#LakeFormMediaModel{{ str_replace(['[', ']'], ['-', ''], $name) }}" 
-                    data-title="{{ $label }}" 
+                <div tabindex="500"
+                    class="btn btn-primary btn-file lake-form-media-btn-file" type="button"
+                    data-toggle="modal"
+                    data-target="#LakeFormMediaModel{{ str_replace(['[', ']'], ['-', ''], $name) }}-{{ str_replace(['[', ']'], ['-', ''], $options['action']) }}"
+                    data-title="{{ $label }}"
                     data-token="{{ csrf_token() }}">
                     <i class="fa fa-folder-open"></i>&nbsp;  
                     <span class="hidden-xs">{{ LakeFormMedia::trans('form-media.select') }}</span>
@@ -41,7 +41,7 @@
     </div>
     
     <!-- 弹窗 -->
-    <div class="modal fade lake-form-media-modal" id="LakeFormMediaModel{{ str_replace(['[', ']'], ['-', ''], $name) }}" tabindex="-1" role="dialog" aria-labelledby="LakeFormMediaModalLabel" style="z-index: 999999999">
+    <div class="modal fade lake-form-media-modal" id="LakeFormMediaModel{{ str_replace(['[', ']'], ['-', ''], $name) }}-{{ str_replace(['[', ']'], ['-', ''], $options['action']) }}" tabindex="-1" role="dialog" aria-labelledby="LakeFormMediaModalLabel" style="z-index: 999999999">
         <div class="modal-dialog" role="document">
             <div class="modal-content"  style="width: 100%">
               <div class="modal-header">
